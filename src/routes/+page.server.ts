@@ -6,10 +6,9 @@ const prisma = new PrismaClient();
 
 export const load: PageServerLoad = async () => {
     const jewelry = await prisma.jewelry.findMany({
-        orderBy: { createdAt: 'desc'}
-    });
-
-    return {
-        jewelry
-    };
+        orderBy: {
+            id: 'desc'
+        }
+    }); 
+    return {jewelry};
 };

@@ -13,15 +13,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// under review
+//rings, pendant, bracelet, earrings, watches
 model Jewelry {
   id        Int      @id @default(autoincrement())
   name      String
   type      String
   material  String
   gemstone  String?
-  price     Decimal  
-  quantity  Int      @default(0)
+  cost      Float
+  retail    Float  
+  quantity  Int      @default(1) 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
