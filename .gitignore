@@ -1,5 +1,9 @@
 node_modules
 
+# A separate clone of the karls-jewelry-inventory-new-build repo that lives
+# inside this folder. Ignored so git doesn't try to record it as a submodule.
+karls-jewelry-inventory-new-build/
+
 # Output
 .output
 .vercel
@@ -11,6 +15,12 @@ node_modules
 # OS
 .DS_Store
 Thumbs.db
+
+# SQLite database and its snapshots — the inventory data itself never goes to
+# GitHub. It's protected by backups/ and OneDrive sync instead.
+*.db
+*.db-journal
+backups/
 
 # Env
 .env

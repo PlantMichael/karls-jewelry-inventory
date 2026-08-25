@@ -9,20 +9,25 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
-//rings, pendant, bracelet, earrings, watches
+// Each column holds one fact. The old program used a single compound category
+// string ("Ring gold diamond engagement"), which forced a new category for every
+// combination. Allowed values live in src/lib/vocab.ts.
 model Jewelry {
   id        Int      @id @default(autoincrement())
   name      String
+  kind      String   @default("Item") // Item (stock) or Service (repairs, appraisals, deposits)
   type      String
-  material  String
+  material  String?
   gemstone  String?
+  length    String? // chains and necklaces only
+  condition String?  @default("New")
   cost      Float
-  retail    Float  
-  quantity  Int      @default(1) 
+  retail    Float
+  quantity  Int      @default(1)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
